@@ -6,6 +6,7 @@ def stock_picker(array)
   earned = "".to_i
   buy = "".to_i
   sell = "".to_i
+  final = []
 
   array.each_with_index do |element, i|
 
@@ -21,29 +22,23 @@ def stock_picker(array)
     
   end
 
-  new = days_best.each_value do |value|
+  days_best = days_best.each_value do |value|
+
     if value > earned
       earned = value.to_i
     end
+
     buy = days_best.rassoc(earned)
 
   end
-  # p buy
-  # ["Day 1 - 3", 12]
 
-  buy = 
-  sell = buy[1] + buy[0]
+  day_1 = buy[0]
+  # for first value of final []
+  final.push(day_1.slice(4).to_i)
+  # for second value of final []
+  final.push(array.index(day_1.slice(-1).to_i + earned.to_i))
 
-  p earned
-  p new
-
- # buy = the index of the element that has the largest earnings
- # sell = the index of the element that equals (largest earnings
- # + element)
-
-
-  # p [buy,sell]
+  p final
 end
-
 
 stock_picker([17,3,6,9,15,8,6,1,10])
